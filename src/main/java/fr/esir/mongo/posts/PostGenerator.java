@@ -49,6 +49,7 @@ public class PostGenerator implements Processor {
               .content(textGenerator.generateText(10))
               .thread_id(randomThread.get_id())
               .user_id(randomKnownUser.get_id())
+              .user_age(randomKnownUser.getAge())
               .build();
 
       return newPost;

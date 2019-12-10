@@ -26,4 +26,6 @@ public class Post {
   private final String user_id;
 
   private final String thread_id;
+
+  private final int user_age;
 }
