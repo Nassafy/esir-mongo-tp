@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  *
  * @author lboutros
@@ -20,4 +22,6 @@ public class Thread {
   private final String _id;
   
   private final String title;
+
+  private final List<String> tags;
 }

@@ -3,7 +3,8 @@ package fr.esir.mongo.threads;
 import fr.esir.mongo.text.TextGenerator;
 import fr.esir.mongo.users.User;
 import fr.esir.mongo.users.UserGenerator;
-import java.util.Random;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.AllArgsConstructor;
@@ -45,6 +46,7 @@ public class ThreadGenerator implements Processor {
       Thread newThread = Thread.builder()
               ._id(idString)
               .title(textGenerator.generateText(1))
+              .tags(getRandomTags())
               .build();
 
       knownThreads.put(idString, newThread);
@@ -54,6 +56,19 @@ public class ThreadGenerator implements Processor {
       log.warn("Cannot create thread, no user created yet.");
       return null;
     }
+  }
+
+  public List<String> getRandomTags() {
+    Random rand = new Random();
+    List<String> tags = new LinkedList<String>(Arrays.asList("mea" ,"comic books", "rage", "memes", "troll", "fonction de hachage parfaite"));
+    List<String> tagsOut = new ArrayList<>();
+    int size = rand.nextInt(tags.size());
+    for (int i = 0 ; i < size ; i++) {
+      int index = rand.nextInt(tags.size());
+      tagsOut.add(tags.get(index));
+      tags.remove(index);
+    }
+    return tagsOut;
   }
 
   public Thread getRandomThread() {
